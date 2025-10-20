@@ -59,20 +59,24 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault(); // evita il redirect
+  e.preventDefault();
 
   const formData = new FormData(e.target);
-
-  const res = await fetch("/submit", {
-    method: "POST",
-    body: formData,
-  });
-
+  const res = await fetch("/submit", { method: "POST", body: formData });
   const result = await res.json();
 
+  const popup = document.getElementById("popup");
+  const message = document.getElementById("popup-message");
+
   if (result.success) {
-    alert(`Dati inviati: ${result.name} ${result.surname}`);
+    message.textContent = `Grazie ${result.name} ${result.surname}! La tua presenza è stata registrata con successo!`;
   } else {
-    alert("Errore: " + result.error);
+    message.textContent = "Errore: " + result.error;
   }
+
+  popup.classList.remove("hidden");
+});
+
+document.getElementById("popup-close").addEventListener("click", () => {
+  document.getElementById("popup").classList.add("hidden");
 });
