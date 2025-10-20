@@ -42,8 +42,8 @@ export async function onRequestPost(context) {
     const surname = data.get("surname");
     const message = data.get("message");
 
-    const clientEmail = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS).client_email;
-    const privateKey = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS).private_key;
+    const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_MAIL;
+    const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
     const header = { alg: "RS256", typ: "JWT" };
     const now = Math.floor(Date.now() / 1000);
@@ -83,7 +83,7 @@ export async function onRequestPost(context) {
       }
     );
 
-    return new Response(JSON.stringify({ success: true, resultAPICall}), {
+    return new Response(JSON.stringify({ success: true, clientEmail}), {
       headers: { "Content-Type": "application/json" },
       status: 200,
     });
