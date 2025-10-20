@@ -42,8 +42,8 @@ export async function onRequestPost(context) {
     const surname = data.get("surname");
     const message = data.get("message");
 
-    const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+    const clientEmail = context.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL;
+    const privateKey = context.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
     const header = { alg: "RS256", typ: "JWT" };
     const now = Math.floor(Date.now() / 1000);
