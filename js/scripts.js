@@ -70,6 +70,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
   if (result.success) {
     message.textContent = `Grazie ${result.name} ${result.surname}! La tua presenza è stata registrata con successo!`;
+    e.target.reset();
   } else {
     message.textContent = "Errore: " + result.error;
   }
