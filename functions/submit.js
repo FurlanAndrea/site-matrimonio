@@ -22,7 +22,7 @@ export async function onRequestPost(context) {
     // append dei dati nel foglio
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: "Sheet1!A:C", // colonne in cui salvare
+      range: "Foglio1!A:C", // colonne in cui salvare
       valueInputOption: "RAW",
       requestBody: {
         values: [[name, surname, message]],
