@@ -69,7 +69,8 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   const message = document.getElementById("popup-message");
 
   if (result.success) {
-    message.textContent = `Grazie ${result.name} ${result.surname}! La tua presenza è stata registrata con successo!`;
+    //message.textContent = `Grazie ${result.name} ${result.surname}! La tua presenza è stata registrata con successo!`;
+    message.textContent = `${result.resultAPICall}`;
     e.target.reset();
   } else {
     message.textContent = "Errore: " + result.error;

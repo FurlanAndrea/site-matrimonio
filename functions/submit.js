@@ -69,7 +69,7 @@ export async function onRequestPost(context) {
     const tokenData = await tokenRes.json();
     const accessToken = tokenData.access_token;
 
-    await fetch(
+    const resultAPICall = await fetch(
       `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(
         SHEET_NAME
       )}!A:C:append?valueInputOption=RAW`,
@@ -83,7 +83,7 @@ export async function onRequestPost(context) {
       }
     );
 
-    return new Response(JSON.stringify({ success: true, name, surname, message }), {
+    return new Response(JSON.stringify({ success: true, resultAPICall}), {
       headers: { "Content-Type": "application/json" },
       status: 200,
     });
