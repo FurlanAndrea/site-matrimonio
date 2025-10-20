@@ -25,6 +25,18 @@
     <button class="btn btn-primary" id="popup-close">OK</button>
   </div>
 </div>
+<div id="busy-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:white;padding:20px;border-radius:10px;display:flex;flex-direction:column;align-items:center;">
+    <div class="loader" style="border:4px solid #f3f3f3;border-top:4px solid #3498db;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;"></div>
+    <p style="margin-top:10px;">Invio in corso...</p>
+  </div>
+</div>
+<style>
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 <body id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">

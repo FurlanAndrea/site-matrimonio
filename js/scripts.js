@@ -58,9 +58,11 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+const overlay = document.getElementById("busy-overlay");
+
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
-
+  overlay.style.display = "flex"; // mostra overlay
   const formData = new FormData(e.target);
   const res = await fetch("/submit", { method: "POST", body: formData });
   const result = await res.json();
@@ -69,13 +71,12 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   const message = document.getElementById("popup-message");
 
   if (result.success) {
-    //message.textContent = `Grazie ${result.name} ${result.surname}! La tua presenza è stata registrata con successo!`;
-    message.textContent = `${result.result}`;
+    message.textContent = `Grazie ${result.name} ${result.surname}! La tua presenza è stata registrata con successo!`;
     e.target.reset();
   } else {
     message.textContent = "Errore: " + result.error;
   }
-
+  overlay.style.display = "none";
   popup.classList.remove("hidden");
 });
 

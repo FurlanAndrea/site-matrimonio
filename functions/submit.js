@@ -17,7 +17,7 @@ export async function onRequestPost(context) {
 
     const result = await response.json();
 
-    return new Response(JSON.stringify({ success: true, result }), {
+    return new Response(JSON.stringify({ success: true, name, surname }), {
       headers: { "Content-Type": "application/json" },
       status: 200,
     });
