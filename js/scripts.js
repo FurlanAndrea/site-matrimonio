@@ -57,3 +57,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+function myFunction() {
+  alert("The form was submitted");
+}
