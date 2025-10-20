@@ -44,6 +44,7 @@ export async function onRequestPost(context) {
 
     const clientEmail = context.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL;
     const privateKey = context.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+    const credentials = context.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS;
 
     const header = { alg: "RS256", typ: "JWT" };
     const now = Math.floor(Date.now() / 1000);
@@ -88,7 +89,7 @@ export async function onRequestPost(context) {
       status: 200,
     });
   } catch (err) {
-    return new Response(JSON.stringify({ success: false, error: err.message }), {
+    return new Response(JSON.stringify({ success: false, error: credentials }), {
       headers: { "Content-Type": "application/json" },
       status: 500,
     });
