@@ -1,4 +1,35 @@
-const SPREADSHEET_ID = "1l3PjNQD6w7C3A2gNurLu-5R8l02wEmOn__Uq6WvcSbc";
+export async function onRequestPost(context) {
+  try {
+    const data = await context.request.formData();
+    const name = data.get("name");
+    const surname = data.get("surname");
+    const message = data.get("message");
+
+    // URL del Web App creato in Google Apps Script
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzT8haj8DThnnbTdSjlVEFulXotIqT1wyljcUp-bQ82Hoa93SUkmvrbcpTRWfgiOq_z0w/exec";
+
+    // invio dati al Web App
+    const response = await fetch(WEB_APP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, surname, message }),
+    });
+
+    const result = await response.json();
+
+    return new Response(JSON.stringify({ success: true, result }), {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ success: false, error: err.message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
+  }
+}
+
+/* const SPREADSHEET_ID = "1l3PjNQD6w7C3A2gNurLu-5R8l02wEmOn__Uq6WvcSbc";
 const SHEET_NAME = "list";
 
 function base64urlEncode(str) {
@@ -82,6 +113,7 @@ export async function onRequestPost(context) {
         body: JSON.stringify({ values: [[name, surname, message]] }),
       }
     );
+    resultAPICall = resultAPICall.json();
 
     return new Response(JSON.stringify({ success: true, resultAPICall}), {
       headers: { "Content-Type": "application/json" },
@@ -93,4 +125,4 @@ export async function onRequestPost(context) {
       status: 500,
     });
   }
-}
+} */
