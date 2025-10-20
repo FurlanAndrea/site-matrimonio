@@ -1,5 +1,5 @@
 const SPREADSHEET_ID = "1l3PjNQD6w7C3A2gNurLu-5R8l02wEmOn__Uq6WvcSbc";
-const SHEET_NAME = "Foglio 1";
+const SHEET_NAME = "list";
 
 function base64urlEncode(str) {
   return btoa(str)
