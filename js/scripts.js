@@ -58,6 +58,21 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-function myFunction() {
-  alert("The form was submitted");
-}
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault(); // evita il redirect
+
+  const formData = new FormData(e.target);
+
+  const res = await fetch("/submit", {
+    method: "POST",
+    body: formData,
+  });
+
+  const result = await res.json();
+
+  if (result.success) {
+    alert(`Dati inviati: ${result.name} ${result.surname}`);
+  } else {
+    alert("Errore: " + result.error);
+  }
+});
